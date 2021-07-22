@@ -20,6 +20,8 @@ service: auth-server
 # Check out our docs for more details
 frameworkVersion: '2'
 
+configValidationMode: error
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -66,8 +68,8 @@ functions:
     handler: handler.getAuthURL
     events:
       - http:
-        path: api/get-auth-url
-        method: get
+          path: api/get-auth-url
+          method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
