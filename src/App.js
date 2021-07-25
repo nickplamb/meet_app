@@ -6,13 +6,16 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 
+import { mockData } from './mock-data';
+import { extractLocations } from './api';
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-       <CitySearch />
+       <CitySearch locations={ extractLocations(mockData) } />
        <NumberOfEvents />
-       <EventList />
+       <EventList events={ mockData } />
       </div>
     );
   }
