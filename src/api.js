@@ -1,3 +1,5 @@
+import { mockData } from "./mock-data";
+
 /**
  * 
  * @param {*} events:
@@ -23,4 +25,8 @@ export const extractDateTime = event => {
   const dateTimeOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZoneName: 'long' };
   const eventDateTime = new Date(event.start.dateTime).toLocaleString([], dateTimeOptions);
   return eventDateTime;
+};
+
+export const getEvents = async () => {
+  return mockData;
 };
