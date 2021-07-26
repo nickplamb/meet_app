@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
+import './nprogress.css';
 
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
