@@ -75,7 +75,7 @@ A serverless PWA using Create React App that can display and filter meetup event
 * ### *Scenario 2:* User can change the number of events they want to see
 
   * Given a user may or may not have searched for a city
-  * When a user selects a number of events from a dropdown
+  * When a user selects a number of events
   * Then the number of events visible to the user changes to match the selected amount
 
 ### **FEATURE 4:** USE THE APP WHEN OFFLINE
