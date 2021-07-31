@@ -6,24 +6,35 @@ export default class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
-    showSuggestions: undefined,
+    showSuggestions: false,
+    infoText: '',
   }
 
   handleInputChanged = e => {
     const value = e.target.value;
+    this.setState({ showSuggestions: true });
     const suggestions = this.props.locations.filter(location => {
       return location.toUpperCase().indexOf(value.toUpperCase())> -1;
     });
-    this.setState({ 
-      query: value,
-      suggestions,
-    });
-  }
+    if(suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText: 'We can not find the city you are looking for. Please try another city.',
+      });
+    } else {
+      this.setState({ 
+        query: value,
+        suggestions,
+        infoText: ''
+      });
+    }
+  };
 
   handleItemClicked = suggestion => {
     this.setState({ 
       query: suggestion,
       showSuggestions: false,
+      infoText: '',
     });
 
     this.props.updateEvents(suggestion, this.props.numberOfEvents);
@@ -42,7 +53,7 @@ export default class CitySearch extends Component {
           id="city-search__input"
           value={ query }
           onChange={ this.handleInputChanged }
-          onFocus={ () => this.setState({ showSuggestions: true }) }
+          // onFocus={ () => this.setState({ showSuggestions: true }) }
         />
         <ul 
           className="suggestions" 
