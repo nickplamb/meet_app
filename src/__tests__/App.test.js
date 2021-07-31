@@ -95,14 +95,14 @@ describe('<App /> integration', () => {
     const AppWrapper = mount(<App />);
     const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
 
-    expect(AppWrapper.find(NumberOfEvents).find('#number-of-events__input').prop('value')).toEqual(AppNumberOfEventsState);
+    expect(AppWrapper.find(NumberOfEvents).find('#numberOfEvents__input').prop('value')).toEqual(AppNumberOfEventsState);
     AppWrapper.unmount();
   });
 
   test('change App state when NumberOfEvents input is changed', async () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 17 } };
-    await AppWrapper.find(NumberOfEvents).find('#number-of-events__input').simulate('change', eventObject);
+    await AppWrapper.find(NumberOfEvents).find('#numberOfEvents__input').simulate('change', eventObject);
 
     expect(AppWrapper.state('numberOfEvents')).toEqual(17);
     AppWrapper.unmount();
@@ -112,7 +112,7 @@ describe('<App /> integration', () => {
     const AppWrapper = mount(<App />);
     const eventObject = { target: { value: 17 } };
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-    NumberOfEventsWrapper.find('.number-of-events__input').simulate('change', eventObject)
+    NumberOfEventsWrapper.find('#numberOfEvents__input').simulate('change', eventObject)
     const eventsNumber = NumberOfEventsWrapper.state('numberOfEvents');
     const allEvents = await getEvents();
     const numberOfEventsToShow = allEvents.slice(0, eventsNumber).length;

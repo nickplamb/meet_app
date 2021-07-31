@@ -34,6 +34,7 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+  margin: 5px;
 }
 
 .city {

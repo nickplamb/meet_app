@@ -32,9 +32,11 @@ export default class CitySearch extends Component {
     
     return (
       <div className="CitySearch">
+        <label htmlFor="city-search__input">Select a City:</label>
         <input 
           type="text"
           className="city"
+          id="city-search__input"
           value={ query }
           onChange={ this.handleInputChanged }
           onFocus={ () => this.setState({ showSuggestions: true }) }
