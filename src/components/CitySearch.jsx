@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import { InfoAlert } from './Alert';
 
 export default class CitySearch extends Component {
   state = {
@@ -32,6 +34,7 @@ export default class CitySearch extends Component {
     
     return (
       <div className="CitySearch">
+        <InfoAlert text={ this.state.infoText } />
         <label htmlFor="city-search__input">Select a City:</label>
         <input 
           type="text"
