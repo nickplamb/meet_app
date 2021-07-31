@@ -35,18 +35,18 @@ describe('<Event /> component', () => {
   });
 
   test('render show details button', () => {
-    expect(EventWrapper.find('button.show-details-btn')).toHaveLength(1);
+    expect(EventWrapper.find('button.details-btn')).toHaveLength(1);
   });
 
   test('show details button text should default to "Show Details" when toggled', () => {
     EventWrapper.setState({ showDetails: false });
 
-    expect(EventWrapper.find('button.show-details-btn').text()).toBe('Show Details');
+    expect(EventWrapper.find('button.details-btn').text()).toBe('Show Details');
   });
 
   test('Change showDetails state to true when show details button is pressed', () => {
     EventWrapper.setState({ showDetails: false });
-    EventWrapper.find('button.show-details-btn').simulate('click', {});
+    EventWrapper.find('button.details-btn').simulate('click', {});
 
     expect(EventWrapper.state('showDetails')).toBe(true);
   });
@@ -58,7 +58,7 @@ describe('<Event /> component', () => {
 
   test('render more details when button is pressed and state changes', () => {
     EventWrapper.setState({ showDetails: false });
-    EventWrapper.find('button.show-details-btn').simulate('click', {});
+    EventWrapper.find('button.details-btn').simulate('click', {});
 
     expect(EventWrapper.find('.more-details')).toHaveLength(1);
   });
@@ -66,7 +66,7 @@ describe('<Event /> component', () => {
   test('show details button text should change to "Hide Details" when toggled', () => {
     EventWrapper.setState({ showDetails: true });
 
-    expect(EventWrapper.find('button.show-details-btn').text()).toBe('Hide Details');
+    expect(EventWrapper.find('button.details-btn').text()).toBe('Hide Details');
   });
 
   test('render a link element within more details', () => {
@@ -95,7 +95,7 @@ describe('<Event /> component', () => {
 
   test('hide details when the hide details button is pressed ', () => {
     EventWrapper.setState({ showDetails: true });
-    EventWrapper.find('button.show-details-btn').simulate('click', {});
+    EventWrapper.find('button.details-btn').simulate('click', {});
     
     expect(EventWrapper.find('.more-details')).toHaveLength(0);
   });
