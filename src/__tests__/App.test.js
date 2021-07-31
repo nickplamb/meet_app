@@ -64,6 +64,7 @@ describe('<App /> integration', () => {
     const eventsToShow = allEvents.filter(event => event.location === selectedCity);
     const numberOfEvents = AppWrapper.state('numberOfEvents');
     
+    expect(numberOfEvents).not.toEqual(undefined);
     expect(AppWrapper.state('events')).toEqual(eventsToShow.slice(0, numberOfEvents));
     expect(AppWrapper.state('selectedLocation')).toEqual(selectedCity);
     AppWrapper.unmount();
@@ -76,6 +77,7 @@ describe('<App /> integration', () => {
     const allEvents = await getEvents();
     const numberOfEvents = AppWrapper.state('numberOfEvents');
 
+    expect(numberOfEvents).not.toEqual(undefined);
     expect(AppWrapper.state('events')).toEqual(allEvents.slice(0, numberOfEvents));
     AppWrapper.unmount();
   });

@@ -24,7 +24,7 @@ export default class CitySearch extends Component {
       showSuggestions: false,
     });
 
-    this.props.updateEvents(suggestion, this.props.numberOfEvent);
+    this.props.updateEvents(suggestion, this.props.numberOfEvents);
   }
 
   render() {
@@ -37,9 +37,12 @@ export default class CitySearch extends Component {
           className="city"
           value={ query }
           onChange={ this.handleInputChanged }
-          onFocus={ () => { this.setState( {showSuggestions: true }) } }
+          onFocus={ () => this.setState({ showSuggestions: true }) }
         />
-        <ul className="suggestions" style={ showSuggestions ? {} : { display: 'none' } } >
+        <ul 
+          className="suggestions" 
+          style={ showSuggestions ? {} : { display: 'none' } } 
+        >
           {suggestions.map(suggestion => (
             <li 
               key={ suggestion }
