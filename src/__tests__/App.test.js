@@ -51,7 +51,7 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  test('get list of events matching the city selected by user', async () => {
+  test('get list of events matching city selected by user and set App state', async () => {
     const AppWrapper = mount(<App />);
     const CitySearchWrapper = AppWrapper.find(CitySearch);
     const locations = extractLocations(mockData);
@@ -65,12 +65,7 @@ describe('<App /> integration', () => {
     const numberOfEvents = AppWrapper.state('numberOfEvents');
     
     expect(AppWrapper.state('events')).toEqual(eventsToShow.slice(0, numberOfEvents));
-    AppWrapper.unmount();
-  });
-
-  test('App state "selectedLocation" set by CitySearch', () => {
-    const AppWrapper = mount(<App />);
-    
+    expect(AppWrapper.state('selectedLocation')).toEqual(selectedCity);
     AppWrapper.unmount();
   });
 
@@ -123,6 +118,4 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events').length).toEqual(numberOfEventsToShow);
     AppWrapper.unmount();
   });
-
-  //test selected location!!
 });
