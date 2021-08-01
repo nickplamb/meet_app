@@ -51,7 +51,7 @@ export default class CitySearch extends Component {
           type="text"
           className="city"
           id="city-search__input"
-          value={ query }
+          value={ query === 'all' ? 'All Cities' : query }
           onChange={ this.handleInputChanged }
           // onFocus={ () => this.setState({ showSuggestions: true }) }
         />
