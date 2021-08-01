@@ -68,7 +68,7 @@ class App extends Component {
           numberOfEvents={ this.state.numberOfEvents } 
           updateCount={ this.updateCount } 
         />
-        { !navigator.online ? <WarningAlert text="You are currently offline. The data shown may not be current." /> : ''}
+        { !navigator.onLine ? <WarningAlert text="You are currently offline. The data shown may not be current." /> : ''}
         <EventList events={ this.state.events } />
       </div>
     );
