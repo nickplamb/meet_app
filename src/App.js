@@ -6,9 +6,10 @@ import './nprogress.css';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
+import WelcomeScreen from './components/WelcomeScreen';
 import { WarningAlert } from './components/Alert';
 
-import { extractLocations, getEvents } from './api';
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
 class App extends Component {
   constructor(props) {
@@ -18,21 +19,31 @@ class App extends Component {
       locations: [],
       numberOfEvents: 32,
       selectedLocation: 'all',
+      showWelcomeScreen: undefined,
     };
 
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
     const { numberOfEvents } = this.state;
-    getEvents().then(events => {
-      if (this.mounted) {
-        this.setState({ 
-          events: events.slice(0, numberOfEvents), 
-          locations: extractLocations(events) 
-        });
-      }
-    });
+
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+
+    if((code || isTokenValid) && this.mounted) {
+      getEvents().then(events => {
+        if (this.mounted) {
+          this.setState({ 
+            events: events.slice(0, numberOfEvents), 
+            locations: extractLocations(events) 
+          });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -56,6 +67,8 @@ class App extends Component {
   }
 
   render() {
+    if(this.state.showWelcomeScreen === undefined) return <div className="App" />
+
     return (
       <div className="App">
         <h1>Meet App</h1>
@@ -70,6 +83,10 @@ class App extends Component {
         />
         { !navigator.onLine ? <WarningAlert text="You are currently offline. The data shown may not be current." /> : ''}
         <EventList events={ this.state.events } />
+        <WelcomeScreen 
+          showWelcomeScreen={ this.state.showWelcomeScreen } 
+          getAccessToken={ () => getAccessToken() } 
+        />
       </div>
     );
   }
