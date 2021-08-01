@@ -142,6 +142,13 @@ input[type="number"] {
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.5);
 }
 
+.Alert.offline {
+  position: static;
+  left: 0;
+  transform: none;
+  margin: 0 auto;
+}
+
 .data-vis-wrapper {
   display: flex;
   align-items: center;

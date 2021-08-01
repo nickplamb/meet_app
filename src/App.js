@@ -6,6 +6,7 @@ import './nprogress.css';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
+import { WarningAlert } from './components/Alert';
 
 import { extractLocations, getEvents } from './api';
 
@@ -67,6 +68,7 @@ class App extends Component {
           numberOfEvents={ this.state.numberOfEvents } 
           updateCount={ this.updateCount } 
         />
+        { !navigator.online ? <WarningAlert text="You are currently offline. The data shown may not be current." /> : ''}
         <EventList events={ this.state.events } />
       </div>
     );
