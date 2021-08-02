@@ -30,13 +30,13 @@ class App extends Component {
     this.mounted = true;
     const { numberOfEvents } = this.state;
 
-    // const accessToken = localStorage.getItem('access_token');
-    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const code = searchParams.get('code');
-    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
 
-    // if((code || isTokenValid) && this.mounted) {
+    if((code || isTokenValid) && this.mounted) {
       getEvents().then(events => {
         if (this.mounted) {
           this.setState({ 
@@ -45,7 +45,7 @@ class App extends Component {
           });
         }
       });
-    // }
+    }
   }
 
   componentWillUnmount() {
@@ -80,7 +80,7 @@ class App extends Component {
 
   render() {
     const { locations, numberOfEvents, events, showWelcomeScreen } = this.state;
-    // if(this.state.showWelcomeScreen === undefined) return <div className="App" />
+    if(this.state.showWelcomeScreen === undefined) return <div className="App" />
 
     return (
       <div className="App">

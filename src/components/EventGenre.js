@@ -10,13 +10,11 @@ const EventGenre = ({ events }) => {
   const getData = () => {
     const data = genres.map(genre => {
       const value = events.filter(({ summary }) => summary.replace(/,/g, '').split(' ').includes(genre)).length
-      console.log(genre, value)
       return {
         name: genre,
         value: value
       }
     });
-    console.log(data)
     return data;
   }
 
@@ -27,7 +25,7 @@ const EventGenre = ({ events }) => {
   // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (
-    <ResponsiveContainer height={ 400 } >
+    <ResponsiveContainer>
       <PieChart width={ 400 } height={ 400 }>
         <Pie
           data={ data }
