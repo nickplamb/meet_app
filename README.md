@@ -4,6 +4,8 @@
 
 A serverless PWA using Create React App that can display and filter meetup events from the Google calender API. It is developed using Test-Drive-Development techniques to ensure a high test coverage rate.
 
+![Screenshot of the app](./public/meet_app_screenshot.png?raw=true "Screenshot")
+
 ## Libraries Used
 
 * Create React App
