@@ -6,11 +6,29 @@ A serverless PWA using Create React App that can display and filter meetup event
 
 ![Screenshot of the app](./public/meet_app_screenshot.png?raw=true "Screenshot")
 
+## Concepts learned
+
+* Progressive Web Apps
+* User stories
+* Test-driven Design
+* Behavior-driven Design
+* Unit, integration, acceptance, and end-to-end testing
+* Test runners
+* Gherkin/Given-When-Then syntax
+* Serverless Functions/FaaS
+* AWS Lambda
+* Google Calendar API
+* OAuth
+* CI/CD basics
+* Performance monitoring
+* Data visualization
+
 ## Libraries Used
 
 * Create React App
 * Axios
 * NProgress
+* Rechart
 * Jest
 * Enzyme
 * Jest-Cucumber
@@ -105,3 +123,10 @@ A serverless PWA using Create React App that can display and filter meetup event
   * Given a user has not selected a city
   * When a user navigates to the home page
   * Then a chart showing the number of events in several cities should be displayed
+
+## OAuth flow
+
+When the user first enters the App it checks to see if they have authorized the app to access the their Google Calendar account, if not they are redirected to a Google Authorization screen to allow them to log in an authorize the app.
+The Google API then sends back a code as a url parameter which the app then passes to the getAccessToken serverless function.
+This function checks with the Google API to validate the code and returns an access token.
+The access token is passed back to the app and is used to authorize each request the app makes to the Google Calendar API.
